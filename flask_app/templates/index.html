@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+    <div style="display: flex;">
+        <div>
+            <h1>Register</h1>
+            <form action="/register" method="post">
+                {% with errors = get_flashed_messages(category_filter=["error"]) %}<!-- declare a variable called messages -->
+                    {% if errors %}<!-- check if there are any messages -->
+                        {% for message in errors %}<!-- loop through the messages -->
+                            <p>{{message}}</p><!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div>
+                    <label for="">First Name</label>
+                    <input type="text" name="first_name">
+                </div>
+                <div>
+                    <label for="">Last Name</label>
+                    <input type="text" name="last_name">
+                </div>
+                <div>
+                    <label for="">Email</label>
+                    <input type="text" name="email">
+                </div>
+                <div>
+                    <label for="">Password</label>
+                    <input type="password" name="password">
+                </div>
+                <div>
+                    <label for="">Confirm Password</label>
+                    <input type="password" name="confirm_password">
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+        <div>
+            <form action="/login" method="post">
+                <h2>Login</h2>
+            {% with bad = get_flashed_messages(category_filter=["bad"]) %}<!-- declare a variable called messages -->
+                {% if bad %}<!-- check if there are any messages -->
+                    {% for message in bad %}<!-- loop through the messages -->
+                        <p>{{message}}</p><!-- display each message in a paragraph tag -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                <div>
+                    <label for="">Email</label>
+                    <input type="text" name="email">
+                </div>
+                <div>
+                    <label for="">Password</label>
+                    <input type="password" name="password">
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+    <nav>
+        <h1>Edit Recipe</h1>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <form style="display: flex;" action="/edit_recipe/{{recipe.id}}" method="post">
+        <input type="hidden" name="id" value="{{session['account_id']}}">
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <div>
+            <div>
+                <label for="">Name:</label>
+                <input type="text" name="name" value="{{recipe.name}}">
+            </div>
+            <div>
+                <label for="">Description:</label>
+                <textarea name="description" value="">{{recipe.description}}</textarea>
+            </div>
+            <div>
+                <label for="">Instructions:</label>
+                <textarea name="instr" value="">{{recipe.instruction}}</textarea>
+            </div>
+            <div>
+                <button type="submit">Update</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="">Date Made On:</label>
+                <input type="date" name="made_on" value="{{recipe.made_on}}">
+            </div>
+            <div>
+                <label for="">Under 30 Minutes?</label>
+                {% if recipe.min_orless == Yes %}
+                <input type="radio" name="30min_orless" id="YES" value="Yes" checked >
+                <label for="Yes">YES</label>
+                <input type="radio" name="30min_orless" id="NO" value="No" >
+                <label for="No">NO</label>
+                {% elif recipe.min_orless == No %}
+                <input type="radio" name="30min_orless" id="YES" value="Yes" >
+                <label for="Yes">YES</label>
+                <input type="radio" name="30min_orless" id="NO" value="No" checked>
+                <label for="No">NO</label>
+                {%endif%}
+            </div>
+        </div>
+    </form>
+</body>
+</html>

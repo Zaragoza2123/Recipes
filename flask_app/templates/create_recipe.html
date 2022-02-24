@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+    <nav>
+        <h1>Add New Recipe</h1>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <form style="display: flex;" action="/create_recipe" method="post">
+        {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <input type="hidden" name="user_id" value="{{session['account_id']}}">
+        <div>
+            <div>
+                <label for="">Name:</label>
+                <input type="text" name="name">
+            </div>
+            <div>
+                <label for="">Description:</label>
+                <textarea name="description"></textarea>
+            </div>
+            <div>
+                <label for="">Instructions:</label>
+                <textarea name="instr"></textarea>
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="">Date Made On:</label>
+                <input type="date" name="made_on" id="">
+            </div>
+            <div>
+                <label for="">Under 30 Minutes?</label>
+                <input type="radio" name="30min_orless" id="Yes" value="Yes" >
+                <label for="Yes">YES</label>
+                <input type="radio" name="30min_orless" id="No" value="No" >
+                <label for="No">NO</label>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

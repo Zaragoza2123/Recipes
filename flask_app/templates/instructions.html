@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+</head>
+<body>
+    <nav>
+        <h1>Welcome {{user.first_name}}</h1>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <h1>{{recipes.name}}</h1>
+    <div>
+        <p>Description:  {{recipes.description}}</p><br>
+        <p>Under 30 minutes:  {{recipes.mins_orless}}</p><br>
+        <p>Instructions:  {{recipes.instruction}}</p><br>
+        <p>Date Made:  {{recipes.made_on}}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+</head>
+<body>
+    <nav>
+        <h1>Welome {{user.first_name}}</h1>
+        <div>
+            <a href="/sendtocreate_recipe">Create</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <p>These are the recipes</p>
+    <div>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Under 30 Minutes?</th>
+                <th>Actions</th>
+            </tr>
+            {%for recipe in recipes%}
+            <tr>
+            <!--<h1>{{session['account_id']}} {{recipe.owner.id}}</h1>-->
+                <td>{{recipe.name}}</td>
+                <td>{{recipe.mins_orless}}</td>
+                <td>
+                <a href="/view_instructions/{{recipe.id}}">View Instructions</a>
+                {% if session['account_id'] == recipe.owner.id %}
+                <a href="/update_recipe/{{recipe.id}}">Edit</a>  <a href="/delete/{{recipe.id}}">Delete</a>
+                {%endif%}
+                </td>
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+</body>
+</html>
